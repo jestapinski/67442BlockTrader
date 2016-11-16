@@ -1,6 +1,0 @@
-use_frameworks!
-
-target 'StripeTest' do
-	use_frameworks!
-	pod 'Stripe'
-end
