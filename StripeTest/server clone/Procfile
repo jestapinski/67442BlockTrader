@@ -1,0 +1,1 @@
+web: bundle exec ruby new_server.rb -p $PORT
