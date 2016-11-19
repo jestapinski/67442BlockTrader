@@ -10,8 +10,8 @@
 		3928D7535BC37CE8F96A80FE /* Pods_StripeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B522E55D626EC2D9E3EF1F84 /* Pods_StripeTest.framework */; };
 		7B5A0D021DD7860A00C0FC60 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A0D011DD7860A00C0FC60 /* MainViewController.swift */; };
 		7B9F05781DDBBC2600E98C5C /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9F05771DDBBC2600E98C5C /* MyAPIClient.swift */; };
-		7B9F057A1DDBC00A00E98C5C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9F05791DDBC00A00E98C5C /* Networking.swift */; };
 		7B9F057F1DDBC9D400E98C5C /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9F057E1DDBC9D400E98C5C /* CardViewController.swift */; };
+		7B9F05811DDF986800E98C5C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9F05801DDF986800E98C5C /* Networking.swift */; };
 		7BFE31911DCE1A780047E332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE31901DCE1A780047E332 /* AppDelegate.swift */; };
 		7BFE31931DCE1A780047E332 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFE31921DCE1A780047E332 /* ViewController.swift */; };
 		7BFE31961DCE1A780047E332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BFE31941DCE1A780047E332 /* Main.storyboard */; };
@@ -44,9 +44,9 @@
 		40404CE2635512F216DFC2F6 /* Pods-StripeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StripeTest/Pods-StripeTest.debug.xcconfig"; sourceTree = "<group>"; };
 		7B5A0D011DD7860A00C0FC60 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7B9F05771DDBBC2600E98C5C /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
-		7B9F05791DDBC00A00E98C5C /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		7B9F057D1DDBC93700E98C5C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		7B9F057E1DDBC9D400E98C5C /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		7B9F05801DDF986800E98C5C /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		7BFE318D1DCE1A780047E332 /* StripeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StripeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BFE31901DCE1A780047E332 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BFE31921DCE1A780047E332 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,8 +126,8 @@
 		7BFE318F1DCE1A780047E332 /* StripeTest */ = {
 			isa = PBXGroup;
 			children = (
+				7B9F05801DDF986800E98C5C /* Networking.swift */,
 				7BFE31901DCE1A780047E332 /* AppDelegate.swift */,
-				7B9F05791DDBC00A00E98C5C /* Networking.swift */,
 				7BFE31921DCE1A780047E332 /* ViewController.swift */,
 				7BFE31941DCE1A780047E332 /* Main.storyboard */,
 				7BFE319A1DCE1A780047E332 /* Assets.xcassets */,
@@ -357,11 +357,11 @@
 				7BFE31991DCE1A780047E332 /* StripeTest.xcdatamodeld in Sources */,
 				7BFE31C21DCE1AA80047E332 /* StripeGuide.swift in Sources */,
 				7BFE31931DCE1A780047E332 /* ViewController.swift in Sources */,
+				7B9F05811DDF986800E98C5C /* Networking.swift in Sources */,
 				7BFE31911DCE1A780047E332 /* AppDelegate.swift in Sources */,
 				7B9F057F1DDBC9D400E98C5C /* CardViewController.swift in Sources */,
 				7B5A0D021DD7860A00C0FC60 /* MainViewController.swift in Sources */,
 				7B9F05781DDBBC2600E98C5C /* MyAPIClient.swift in Sources */,
-				7B9F057A1DDBC00A00E98C5C /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

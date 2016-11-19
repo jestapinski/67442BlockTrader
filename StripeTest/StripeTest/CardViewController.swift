@@ -15,6 +15,8 @@ class CardViewController: UIViewController, STPPaymentCardTextFieldDelegate, Car
     @IBOutlet weak var payButton: UIButton!
     var paymentTextField: STPPaymentCardTextField!
     
+    let API = MyAPIClient()
+    
     override func viewDidLoad() {
         // add stripe built-in text field to fill card information in the middle of the view
         super.viewDidLoad()
@@ -47,33 +49,11 @@ class CardViewController: UIViewController, STPPaymentCardTextFieldDelegate, Car
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
         //send card information to stripe to get back a token
-        getStripeToken(card: card)
+        self.API.getStripeToken(card: card)
     }
     
     
-    func getStripeToken(card:STPCardParams) {
-        // get stripe token for current card
-        STPAPIClient.shared().createToken(withCard: card) { token, error in
-            if let token = token {
-                print(token)
-                SVProgressHUD.showSuccess(withStatus: "Stripe token successfully received: \(token)")
-                self.postStripeToken(token: token)
-            } else {
-                print(error)
-                //SVProgressHUD.showError(errorwithStatus:,, ?.localizedDescription)
-            }
-        }
-    }
-    
-    // charge money from backend
-    func postStripeToken(token: STPToken) {
-        //Set up these params as your backend require
-        let params: [String: NSObject] = ["stripeToken": token.tokenId as NSObject, "amount": 10 as NSObject]
         
-        //TODO: Send params to your backend to process payment
-        
-    }
-    
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
         if textField.valid{
             payButton.isEnabled = true
@@ -105,7 +85,7 @@ class CardViewController: UIViewController, STPPaymentCardTextFieldDelegate, Car
             card.cvc = info.cvv
             
             //Send to Stripe
-            getStripeToken(card: card)
+            self.API.getStripeToken(card: card)
             
         }
     }

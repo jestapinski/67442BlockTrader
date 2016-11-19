@@ -72,9 +72,6 @@ class Server < Sinatra::Base
     #redirect "smartappbanner://#{@access_token}"
     #erb :callback
   end
-end
-
-Server.run!
 
 # Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
 
@@ -86,29 +83,42 @@ Server.run!
 #   return "Great, your backend is set up. Now you can configure the Stripe example iOS apps to point here."
 # end
 
-# post '/charge' do
-#   authenticate!
-#   # Get the credit card details submitted by the form
-#   source = params[:source]
+post '/charge' do
+  # authenticate!
+  # Get the credit card details submitted by the form
+  # return "WIEE"
+  source = params[:stripeToken]
+  Stripe.api_key = "sk_test_1br9u7yn1RbFhyciUNoWqKXr"
 
-#   # Create the charge on Stripe's servers - this will charge the user's card
-#   begin
-#     charge = Stripe::Charge.create(
-#       :amount => params[:amount], # this number should be in cents, passed from API Client
-#       :currency => "usd",
-#       :customer => @customer.id,
-#       :source => source,
-#       :description => "Example Charge"
-#       :destination => params[:finalDestID] #Passed in from iOS client
-#     )
-#   rescue Stripe::StripeError => e
-#     status 402
-#     return "Error creating charge: #{e.message}"
-#   end
+  # Create the charge on Stripe's servers - this will charge the user's card
+  begin
+    customer = Stripe::Customer.create(
+      :description => "Customer for jordan.stapinski@example.com",
+      :email => "js@example.com",
+      :source => source
+      )
+    charge = Stripe::Charge.create(
+      :amount => params[:amount], # this number should be in cents, passed from API Client
+      :currency => "usd",
+      :customer => customer.id,
+      # :source => source,
+      :description => "Example Charge",
+      :destination => params[:acct]
+      # {:stripe_account => params[:acct]} #Passed in from iOS client
+    )
+  rescue Stripe::StripeError => e
+    status 402
+    puts e.message
+    return "Error creating charge: #{e.message}"
+  end
 
-#   status 200
-#   return "Charge successfully created"
-# end
+  status 200
+  return customer.id
+end
+
+Server.run!
+end
+
 
 # # Gets the customer object using Stripe API
 # get '/customer' do

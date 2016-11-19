@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var accessCode: String?
-    let stripePublishableKey = " pk_test_BfRm3UU2gsYRebGH6cMuwnl7"
+    let stripePublishableKey = "pk_test_BfRm3UU2gsYRebGH6cMuwnl7"
     let appleMerchantID: String? = nil
     fileprivate var requiredBillingAddressFields: RequiredBillingAddressFields = .None
 //    let applePay

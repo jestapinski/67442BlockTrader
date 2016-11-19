@@ -8,6 +8,8 @@
 
 import Foundation
 import Stripe
+import SVProgressHUD
+
 
 class MyAPIClient: NSObject, STPBackendAPIAdapter {
     
@@ -23,6 +25,49 @@ class MyAPIClient: NSObject, STPBackendAPIAdapter {
         self.session = URLSession(configuration: configuration)
         super.init()
     }
+    
+    func getStripeToken(card:STPCardParams) {
+        // get stripe token for current card
+        STPAPIClient.shared().createToken(withCard: card) { token, error in
+            if let token = token {
+                print(token)
+                SVProgressHUD.showSuccess(withStatus: "Stripe token successfully received: \(token)")
+                self.postStripeToken(token: token)
+            } else {
+                print(error)
+                //SVProgressHUD.showError(errorwithStatus:,, ?.localizedDescription)
+            }
+        }
+    }
+    
+    // charge money from backend
+    func postStripeToken(token: STPToken) {
+        //Set up these params as your backend require
+        //Remove hardcoding
+        let params: [String: NSObject] = ["stripeToken": token.tokenId as NSObject, "amount": 100 as NSObject, "acct" : "acct_19FdUmA1RWNbtIye" as NSObject]
+        //Fix below
+        let baseUrl = URL(string: "http://stripetest67442.herokuapp.com")
+        let url = baseUrl?.appendingPathComponent("charge")
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 5
+        let session = URLSession(configuration: configuration)
+        //Actual Charge done below after passing to backend
+        let request = URLRequest.request(url!, method: .POST, params: params)
+        let task = session.dataTask(with: request) { (data:Data?, urlResponse, error) in
+            DispatchQueue.main.async {
+                if let error = self.decodeResponse(urlResponse, error: error as NSError?) {
+                    return
+                } else {
+                    print("Success, but will figure out in the future")
+                    print(urlResponse)
+                    let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                    print(responseString!)
+                }
+            }}
+        task.resume()
+        
+    }
+
     
     func decodeResponse(_ response: URLResponse?, error: NSError?) -> NSError? {
         if let httpResponse = response as? HTTPURLResponse
